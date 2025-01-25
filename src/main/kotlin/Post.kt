@@ -8,10 +8,30 @@ data class Post(
     val id: Int = 1,
     val ownerId: Int = 1,
     val date: String = currentDate,
-    val text: String = "Hello world",
     val reposts: Int = 0,
     val views: Int = 15,
-    val attachments: Int = 2,
     val isFavorite: Boolean = true,
-    val likes: Likes = Likes()
+    val likes: Likes = Likes(),
+    val text: String?,
+    val attachments: List<Attachments>?
 )
+
+data class VideoAttachment(val videoUrl: String) : Attachments {
+    override val type: String = "video"
+}
+
+data class PhotoAttachment(val photoUrl: String) : Attachments {
+    override val type: String = "photo"
+}
+
+data class AudioAttachment(val audioUrl: String) : Attachments {
+    override val type: String = "audio"
+}
+
+data class StickersAttachment(val stickerUrl: String) : Attachments {
+    override val type: String = "sticker"
+}
+
+data class FileAttachment(val fileUrl: String) : Attachments {
+    override val type: String = "file"
+}
