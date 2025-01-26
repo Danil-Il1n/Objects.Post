@@ -60,4 +60,13 @@ fun main() {
     if (isUpdated) {
         println("Обновленный пост: $updatedPost")
     }
+
+    try {
+        val comment = wallService.createComment(1, Comment(1, 1, "Мой комментарий"))
+        println("Create comment $comment")
+        wallService.createComment(4, Comment(id = 2, postId = 3, text = "Invalid post"))
+
+    } catch (e: PostNotFoundException) {
+        println(e.message)
+    }
 }
