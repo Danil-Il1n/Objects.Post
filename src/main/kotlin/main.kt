@@ -1,10 +1,10 @@
 fun main() {
 
-    val video = VideoAttachment("https://example.com/video.mp4")
-    val photo = PhotoAttachment("https://example.com/image.jpg")
-    val audio = AudioAttachment("https://example.com/audio.mp3")
-    val file = FileAttachment("https://example.com/file.docx")
-    val sticker = StickersAttachment("https://example.com/sticker.png")
+    val video = VideoAttachment(video = Video(110, "Хорошее"))
+    val photo = PhotoAttachment(photo = Photo(120, "1920 x 1080"))
+    val audio = AudioAttachment(audio = Audio(120, "Это вообще песня"))
+    val file = FileAttachment(file = File(".docx", 10))
+    val sticker = StickersAttachment(sticker = Stickers("Крутые стикеры", null))
 
     val post1 = Post(
         id = 1,
@@ -59,5 +59,14 @@ fun main() {
     println("\nРезультат обновления поста с id=${post2.id}: $isUpdated")
     if (isUpdated) {
         println("Обновленный пост: $updatedPost")
+    }
+
+    try {
+        val comment = wallService.createComment(1, Comment(1, 1, "Мой комментарий"))
+        println("Create comment $comment")
+        wallService.createComment(4, Comment(id = 2, postId = 3, text = "Invalid post"))
+
+    } catch (e: PostNotFoundException) {
+        println(e.message)
     }
 }
