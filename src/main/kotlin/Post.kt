@@ -16,22 +16,47 @@ data class Post(
     val attachments: List<Attachments>?
 )
 
-data class VideoAttachment(val videoUrl: String) : Attachments {
+data class VideoAttachment(val video: Video) : Attachments {
     override val type: String = "video"
 }
 
-data class PhotoAttachment(val photoUrl: String) : Attachments {
+data class Video(
+    val duration: Int = 120,
+    val quality: String = "Хорошее"
+)
+
+data class PhotoAttachment(val photo: Photo) : Attachments {
     override val type: String = "photo"
 }
 
-data class AudioAttachment(val audioUrl: String) : Attachments {
+data class Photo(
+    val size: Int = 120,
+    val permission: String = "1920 x 1080"
+)
+
+data class AudioAttachment(val audio: Audio) : Attachments {
     override val type: String = "audio"
 }
 
-data class StickersAttachment(val stickerUrl: String) : Attachments {
+data class Audio(
+    val duration: Int = 120,
+    val title: String = "Это вообще песня"
+)
+
+data class StickersAttachment(val sticker: Stickers) : Attachments {
     override val type: String = "sticker"
 }
 
-data class FileAttachment(val fileUrl: String) : Attachments {
+data class Stickers(
+    val packName: String = "Крутые стикеры",
+    val emoji: String?
+)
+
+data class FileAttachment(val file: File) : Attachments {
     override val type: String = "file"
 }
+
+data class File(
+    val fileFormat: String = ".docx",
+    val pageCount: Int = 10
+)

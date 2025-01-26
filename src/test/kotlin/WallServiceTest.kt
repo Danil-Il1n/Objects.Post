@@ -3,7 +3,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class WallServiceTest {
-    val photo = PhotoAttachment("https://example.com/image.jpg")
+    val photo = PhotoAttachment(photo = Photo())
 
     @Test
     fun add() {
