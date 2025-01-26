@@ -4,7 +4,7 @@ class WallService {
 
 
     fun createComment(postId: Int, comment: Comment): Comment {
-        val check = posts.any {it.id == postId}
+        val check = posts.any { it.id == postId }
         if (!check) {
             throw PostNotFoundException("Post with id $postId not found")
         }
@@ -29,5 +29,6 @@ class WallService {
         return false
     }
 }
+
 data class Comment(val id: Int, val postId: Int, val text: String)
 class PostNotFoundException(message: String) : RuntimeException(message)

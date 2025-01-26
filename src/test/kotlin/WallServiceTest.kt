@@ -103,4 +103,59 @@ class WallServiceTest {
 
         assertTrue(actual)
     }
+
+    @Test
+    fun createComment() {
+        val service = WallService()
+
+        val added = service.add(
+            Post(
+                1,
+                1,
+                currentDate,
+                0,
+                1,
+                true,
+                Likes(
+                    1,
+                    true,
+                    true,
+                    true
+                ),
+                "text",
+                attachments = listOf(photo)
+            )
+        )
+
+        val comment = service.createComment(1, Comment(1, 1, "Test"))
+
+        assertTrue(added.id == comment.id)
+    }
+
+    @Test(expected = PostNotFoundException::class)
+    fun shouldThrow() {
+        val service = WallService()
+
+        val added = service.add(
+            Post(
+                2,
+                1,
+                currentDate,
+                0,
+                1,
+                true,
+                Likes(
+                    1,
+                    true,
+                    true,
+                    true
+                ),
+                "text",
+                attachments = listOf(photo)
+            )
+        )
+
+        val comment = service.createComment(1, Comment(1, 1, "Test"))
+
+    }
 }
